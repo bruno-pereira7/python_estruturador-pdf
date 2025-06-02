@@ -1,75 +1,65 @@
-# Estruturador PDF - Documentação
+# 📄 Estruturador PDF - Documentação
 
-## Visão Geral
+## 🔍 Visão Geral
+O **PDF Data Processor** é uma ferramenta CLI (Command Line Interface) desenvolvida em Python para extrair, estruturar e processar dados de arquivos PDF.
 
-O PDF Data Processor é uma ferramenta de linha de comando (CLI) desenvolvida em Python para extrair, estruturar e processar dados de arquivos PDF. O software é capaz de: 
+### Funcionalidades Principais:
+- Extração de texto bruto
+- Captura de metadados
+- Extração de tabelas
+- Estruturação automática de dados
+- Exportação para JSON ou exibição no terminal
 
-- Extrair texto bruto de PDFs
-- Capturar metadados do documento
-- Identificar e extrair tabelas
-- Estruturar os dados em um formato organizado 
-- Exportar resultados em JSON ou exibir no terminal
+## ⚙️ Pré-requisitos
+- Python 3.8+
+- Pip (gerenciador de pacotes)
 
-## Pré-requisitos
+## 🚀 Instalação
 
-- Python 3.8 ou superior
-- Pip (gerenciador de pacotes Python)
-
-## Instalação
-
-**1. Clone o repositório ou baixe os arquivos do projeto:**
+**Clone o repositório**
 
 ```bash
 git clone https://github.com/seu-usuario/pdf-data-processor.git
-```
-Depois:
-
-```bash
 cd pdf-data-processor
 ```
 
-**2. Crie um ambiente virtual (recomendado):**
+**Crie um ambiente virtual (recomendado)**
 
 ```bash
 python -m venv venv
-source venv/bin/activate  # Linux/MacOS
-venv\Scripts\activate    # Windows
+source venv/bin/activate      # Linux/MacOS
+venv\Scripts\activate         # Windows
 ```
 
-**3. Instale as dependências:**
-
+**Instale as dependências**
 ```bash
 pip install -r requirements.txt
 ```
 
-## Dependências
+## 📦 Dependências Principais
+- **PyPDF2:** Extração básica de texto e metadados
 
-O projeto utiliza as seguintes bibliotecas principais:
+- **pdfplumber:** Extração precisa de texto e tabelas
 
-- PyPDF2: Para extração básica de texto e metadados
+- **argparse:** Processamento de argumentos CLI
 
-- pdfplumber: Para extração precisa de tabelas e texto
+## 🗂 Estrutura do Projeto
 
-- argparse: Para processamento de argumentos de linha de comando
-
-## Arquitetura do Projeto
 ```
-
 pdf-data-processor/
 ├── main.py              # Ponto de entrada principal
-├── cli.py               # Lógica de interface de linha de comando
-├── pdf_parser.py        # Extração de conteúdo de PDFs
-├── data_processor.py    # Processamento e estruturação de dados
-├── utils.py             # Funções auxiliares compartilhadas
-├── requirements.txt     # Dependências do projeto
-├── outputs/             # Diretório para arquivos processados
-│   ├── json/            # Saídas no formato JSON
-│   └── csv/             # Saídas no formato CSV
-└── README.md            # Documentação do projeto
+├── cli.py               # Interface de linha de comando
+├── pdf_parser.py        # Lógica de extração de PDFs
+├── data_processor.py    # Processamento de dados
+├── utils.py             # Funções auxiliares
+├── requirements.txt     # Lista de dependências
+├── outputs/             # Pasta de saídas
+│   ├── json/            # Resultados em JSON
+│   └── csv/             #Resultados em CSV
+└── README.md           #Documentação
 ```
 
-**Fluxo de Processamento**
-
+## 🔁 Fluxo de Processamento
 **1. Entrada:**
 - Arquivo PDF fornecido via argumento CLI
 
@@ -88,119 +78,66 @@ pdf-data-processor/
 **4. Saída:**
 
 - Exibição no terminal
-- Exportação para arquivo
+- Exportação para arquivo (JSON/CSV)
 
-## Uso Básico
+## 🧪 Exemplos de Uso
 
-**Sintaxe do Comando**
+### Comandos Básicos:
 
-```bash
-python main.py <arquivo.pdf> [opções]
-
-```
-
-**Exemplos**
-
-
-**1. Processar um PDF e exibir resultados no terminal:**
-
-```bash
-python main.py documento.pdf
-
-```
-
-**2. Processar um PDF e salvar em arquivo JSON:**
-
-```bash
-python main.py documento.pdf -o resultado.json
-```
-
-**3. Processar em modo verboso (mostra detalhes do processamento):**
-
-```bash
-python main.py documento.pdf -v
-```
-
-## Comandos Básicos
-
-**1. Processar um arquivo PDF e mostrar resultado no terminal:**
+**Exibir resultado no terminal**
 
 ```bash
 python main.py documento.pdf
 ```
 
-**2. Processar e salvar em JSON:**
+**Salvar como JSON**
 
 ```bash
 python main.py documento.pdf -o resultado.json
 ```
 
-**3. Processar em modo verboso (mostra detalhes):**
-
+**Modo verboso (detalhado)**
 ```bash
 python main.py documento.pdf -v
 ```
+### Comandos Avançados:
 
-## Comandos Avançados
-**1. Processar TODOS os PDF's de uma pasta:**
-
+**Processar todos os PDFs da pasta**
 ```bash
-for arquivo in *.pdf; do python main.py "$arquivo" -o "${arquivo%.pdf}.json"; done
+for arq in *.pdf; do python main.py "$arq" -o "${arq%.pdf}.json"; done
 ```
 
-**2. Processar apenas páginas específicas (ex: pág 1 a 5):**
-
+**Extrair páginas específicas (1-5)**
 ```bash
 python main.py relatorio.pdf --pages 1-5
 ```
 
-**3. Extrair só tabelas para CSV:**
-
+**Extrair apenas tabelas (formato CSV)**
 ```bash
 python main.py dados.pdf --tables-only -o tabelas.csv
 ```
 
-**4. Modo silencioso (só mostra erros):**
-
+**Modo silencioso (apenas erros)**
 ```bash
-python main.py contrato.pdf --quiet tabelas.csv
+python main.py contrato.pdf --quiet
 ```
 
-## Opções Disponíveis
+## ⚙️ Opções Disponíveis
 
-| Comando          | Atalho | Descrição                                      | Exemplo de Uso                     |
-|------------------|--------|-----------------------------------------------|------------------------------------|
-| `--output`       | `-o`   | Salva em arquivo (JSON/CSV)                   | `python main.py doc.pdf -o saida.json` |
-| `--verbose`      | `-v`   | Modo detalhado (mostra processamento interno) | `python main.py doc.pdf -v`        |
-| `--pages`        |        | Processa páginas específicas                  | `python main.py doc.pdf --pages 1,3-5` |
-| `--tables-only`  |        | Extrai APENAS tabelas                         | `python main.py doc.pdf --tables-only` |
-| `--text-only`    |        | Extrai APENAS texto                           | `python main.py doc.pdf --text-only` |
-| `--metadata`     |        | Mostra APENAS metadados do PDF                | `python main.py doc.pdf --metadata` |
-| `--quiet`        |        | Modo silencioso (mostra apenas erros)         | `python main.py doc.pdf --quiet`    |
+| Opção          | Atalho | Descrição                                      | Exemplo de Uso                     |
+|----------------|--------|-----------------------------------------------|------------------------------------|
+| `--output`     | `-o`   | Salvar resultado em arquivo (JSON/CSV)        | `python main.py doc.pdf -o saida.json` |
+| `--verbose`    | `-v`   | Mostrar detalhes do processamento             | `python main.py doc.pdf -v`        |
+| `--pages`      |        | Processar páginas específicas (ex: 1,3-5)     | `python main.py doc.pdf --pages 1-3,5` |
+| `--tables-only`|        | Extrair apenas tabelas                        | `python main.py doc.pdf --tables-only` |
+| `--text-only`  |        | Extrair apenas texto                          | `python main.py doc.pdf --text-only` |
+| `--metadata`   |        | Mostrar apenas metadados                      | `python main.py doc.pdf --metadata` |
+| `--quiet`      |        | Ocultar tudo exceto erros                     | `python main.py doc.pdf --quiet`   |
+| `--help`       | `-h`   | Exibir ajuda                                  | `python main.py --help`            |
 
-### Dicas:
-- Combine opções: `-v -o saida.json` (verboso + salva em arquivo)
-- Use `--` para valores que começam com `-`: `--pages -- -1` (página especial)
-## Opções Disponíveis
+💡 **Dica**: Combine opções como `-v -o saida.json` para modo verboso + exportação
 
-| Opção         | Descrição                                      | Exemplo               |
-|---------------|-----------------------------------------------|-----------------------|
-| `-o`, `--output` | Salva a saída em um arquivo (JSON ou CSV)     | `-o resultado.json`   |
-| `-v`, `--verbose` | Ativa modo verboso para detalhes de processo  | `-v`                  |
-| `-h`, `--help`   | Mostra mensagem de ajuda                      | `-h`                  |
-
-## Saída do Programa
-
-O programa gera um objeto JSON estruturado com três seções principais:
-
-**1. metadata:** Informações do documento (autor, título, etc.)
-
-**2. sections:** Texto do documento dividido em seções
-
-**3. tables:** Tabelas extraídas com seus dados
-
-**Exemplos de Saída:**
-
+## 🧾 Formato de Saída
 ```json
 {
   "metadata": {
@@ -218,66 +155,37 @@ O programa gera um objeto JSON estruturado com três seções principais:
       "rows": 5,
       "data": [
         ["Item", "Quantidade", "Preço"],
-        ["1", "2", "R$ 10,00"],
-        ...
+        ["1", "2", "R$ 10,00"]
       ]
     }
   ]
 }
 ```
 
-## Processamento Avançado
+## ⚠️ Limitações Conhecidas
+- PDFs digitalizados (sem suporte a OCR)
 
-**Formatos de Saída**
+- Layouts complexos podem afetar extração
 
-O programa suporta diferentes formatos de saída:
+- Células mescladas em tabelas podem ter problemas
 
-**1. JSON** (padrão): **`-o saida.json`**
+## 🛠 Solução de Problemas
+- **Arquivo não encontrado:** Verifique caminhos absolutos
 
-**2. CSV** (para tabelas): **`-o tabelas.csv`**
+- **PDF criptografado:** Não suportado atualmente
 
-**Processamento em Lote**
+- **Extração incompleta:** Use -v para depuração
 
-Para processar vários arquivos de uma vez:
+## 🗺 Roadmap Futuro
+- Suporte a PDFs protegidos por senha
 
-```bash
-for file in *.pdf; do python main.py "$file" -o "${file%.pdf}.json"; done
-```
+- Integração com OCR (Tesseract)
 
-## Limitações Conhecidas
+- Exportação para XML/SQL
 
-1. PDFs digitalizados (imagens) requerem OCR não implementado
+- Interface Web/REST
 
-2. Layouts complexos podem afetar a extração de texto
-
-3. Tabelas com células mescladas podem não ser extraídas corretamente
-
-## Solução de Problemas
-
-**Erro: "File not found"**
-
-- Verifique se o caminho do arquivo está correto
-- Use caminhos absolutos se necessário
-
-**Erro: "PDF is encrypted"**
-
-- O PDF está protegido por senha (não suportado atualmente)
-
-**Extração incompleta**
-- Experimente usar o modo verboso (-v) para identificar problemas
-- Para PDFs complexos, considere pré-processar com outras ferramentas
-
-## Roadmap e Melhorias Planejadas
-
-1. Suporte a PDFs protegidos por senha
-2. Integração com OCR para documentos digitalizados
-3. Exportação para formatos adicionais (XML, SQL)
-4. Reconhecimento automático de tipos de documento (faturas, contratos)
-5. Interface web/REST opcional
-
-## Contribuição
-
-Contribuições são bem-vindas! Siga os passos:
+## 🤝 Como Contribuir
 
 1. Faça um fork do projeto
 2. Crie uma branch para sua feature (`git checkout -b feature/incrivel`)
@@ -285,12 +193,9 @@ Contribuições são bem-vindas! Siga os passos:
 4. Faça push para a branch (`git push origin feature/incrivel`)
 5. Abra um Pull Request
 
-## Contato
+## 📬 Contato
+Nome: Bruno
 
-Para dúvidas ou sugestões, entre em contato com:
+Email: brunorochape.contato@gmail.com
 
-**Nome:** Bruno
-
-**Email:** brunorochape.contato@gmail.com
-
-**Issues:** https://github.com/bruno-pereira7/python_estruturador-pdf/issues
+Issues: [GitHub Issues](https://github.com/bruno-pereira7/python_estruturador-pdf/issues)
