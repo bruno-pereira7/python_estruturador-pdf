@@ -52,6 +52,44 @@ O projeto utiliza as seguintes bibliotecas principais:
 
 - argparse: Para processamento de argumentos de linha de comando
 
+## Arquitetura do Projeto
+```
+
+pdf-data-processor/
+├── main.py              # Ponto de entrada principal
+├── cli.py               # Lógica de interface de linha de comando
+├── pdf_parser.py        # Extração de conteúdo de PDFs
+├── data_processor.py    # Processamento e estruturação de dados
+├── utils.py             # Funções auxiliares compartilhadas
+├── requirements.txt     # Dependências do projeto
+├── outputs/             # Diretório para arquivos processados
+│   ├── json/            # Saídas no formato JSON
+│   └── csv/             # Saídas no formato CSV
+└── README.md            # Documentação do projeto
+```
+
+**Fluxo de Processamento**
+
+**1. Entrada:**
+- Arquivo PDF fornecido via argumento CLI
+
+**2. Extração:**
+
+- Metadados via PyPDF2
+- Texto e tabelas via pdfplumber
+
+**3. Processamento:**
+
+- Limpeza e normalização de texto
+- Identificação de seções
+
+- Estruturação de tabelas
+
+**4. Saída:**
+
+- Exibição no terminal
+- Exportação para arquivo
+
 ## Uso Básico
 
 **Sintaxe do Comando**
@@ -83,6 +121,66 @@ python main.py documento.pdf -o resultado.json
 python main.py documento.pdf -v
 ```
 
+## Comandos Básicos
+
+**1. Processar um arquivo PDF e mostrar resultado no terminal:**
+
+```bash
+python main.py documento.pdf
+```
+
+**2. Processar e salvar em JSON:**
+
+```bash
+python main.py documento.pdf -o resultado.json
+```
+
+**3. Processar em modo verboso (mostra detalhes):**
+
+```bash
+python main.py documento.pdf -v
+```
+
+## Comandos Avançados
+**1. Processar TODOS os PDF's de uma pasta:**
+
+```bash
+for arquivo in *.pdf; do python main.py "$arquivo" -o "${arquivo%.pdf}.json"; done
+```
+
+**2. Processar apenas páginas específicas (ex: pág 1 a 5):**
+
+```bash
+python main.py relatorio.pdf --pages 1-5
+```
+
+**3. Extrair só tabelas para CSV:**
+
+```bash
+python main.py dados.pdf --tables-only -o tabelas.csv
+```
+
+**4. Modo silencioso (só mostra erros):**
+
+```bash
+python main.py contrato.pdf --quiet tabelas.csv
+```
+
+## Opções Disponíveis
+
+| Comando          | Atalho | Descrição                                      | Exemplo de Uso                     |
+|------------------|--------|-----------------------------------------------|------------------------------------|
+| `--output`       | `-o`   | Salva em arquivo (JSON/CSV)                   | `python main.py doc.pdf -o saida.json` |
+| `--verbose`      | `-v`   | Modo detalhado (mostra processamento interno) | `python main.py doc.pdf -v`        |
+| `--pages`        |        | Processa páginas específicas                  | `python main.py doc.pdf --pages 1,3-5` |
+| `--tables-only`  |        | Extrai APENAS tabelas                         | `python main.py doc.pdf --tables-only` |
+| `--text-only`    |        | Extrai APENAS texto                           | `python main.py doc.pdf --text-only` |
+| `--metadata`     |        | Mostra APENAS metadados do PDF                | `python main.py doc.pdf --metadata` |
+| `--quiet`        |        | Modo silencioso (mostra apenas erros)         | `python main.py doc.pdf --quiet`    |
+
+### Dicas:
+- Combine opções: `-v -o saida.json` (verboso + salva em arquivo)
+- Use `--` para valores que começam com `-`: `--pages -- -1` (página especial)
 ## Opções Disponíveis
 
 | Opção         | Descrição                                      | Exemplo               |
@@ -195,4 +293,4 @@ Para dúvidas ou sugestões, entre em contato com:
 
 **Email:** brunorochape.contato@gmail.com
 
-**Issues:** https://github.com/bruno-pereira7/estruturador-pdf/issues
+**Issues:** https://github.com/bruno-pereira7/python_estruturador-pdf/issues
