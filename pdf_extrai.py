@@ -12,7 +12,7 @@ def extract_data_from_pdf(pdf_path):
     }
     
     # Extrai texto básico e metadados
-    with open(pdf_path, 'rb') as file:
+    with open(pdf_path, 'rb') as file: 
         pdf = PdfReader(file)
         data['metadata'] = pdf.metadata
         

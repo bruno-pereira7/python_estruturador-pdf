@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-O PDF Data Processor é uma ferramenta de linha de comando (CLI) desenvolvida em Python para extrair, estruturar e processar dados de arquivos PDF. O software é capaz de:
+O PDF Data Processor é uma ferramenta de linha de comando (CLI) desenvolvida em Python para extrair, estruturar e processar dados de arquivos PDF. O software é capaz de: 
 
 - Extrair texto bruto de PDFs
 - Capturar metadados do documento

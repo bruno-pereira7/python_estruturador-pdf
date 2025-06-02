@@ -63,7 +63,7 @@ def measure_execution_time(func):
     """Decorator para medir tempo de execução de funções"""
     import time
     def wrapper(*args, **kwargs):
-        start_time = time.time()
+        start_time = time.time() 
         result = func(*args, **kwargs)
         end_time = time.time() 
         print(f"\nTempo de execução de {func.__name__}: {end_time - start_time:.2f} segundos")

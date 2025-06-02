@@ -23,7 +23,7 @@ def extract_sections(text):
     parts = re.split(r'\n\s*\n', text)
     for i, part in enumerate(parts):
         if part.strip():
-            sections[f'section_{i}'] = part.strip()
+            sections[f'section_{i}'] = part.strip() 
     return sections 
 
 def process_tables(tables):
