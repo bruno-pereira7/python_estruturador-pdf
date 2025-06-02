@@ -16,7 +16,7 @@ def extract_data_from_pdf(pdf_path):
         pdf = PdfReader(file)
         data['metadata'] = pdf.metadata
         
-        for page in pdf.pages:
+        for page in pdf.pages: 
             data['text'] += page.extract_text() + '\n'
     
     # Extrai tabelas (usando pdfplumber para melhor precisão)

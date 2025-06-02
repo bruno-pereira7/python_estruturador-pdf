@@ -24,7 +24,7 @@ def extract_sections(text):
     for i, part in enumerate(parts):
         if part.strip():
             sections[f'section_{i}'] = part.strip()
-    return sections
+    return sections 
 
 def process_tables(tables):
     # Processa tabelas extraídas

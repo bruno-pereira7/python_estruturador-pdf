@@ -7,7 +7,7 @@ O PDF Data Processor é uma ferramenta de linha de comando (CLI) desenvolvida em
 - Extrair texto bruto de PDFs
 - Capturar metadados do documento
 - Identificar e extrair tabelas
-- Estruturar os dados em um formato organizado
+- Estruturar os dados em um formato organizado 
 - Exportar resultados em JSON ou exibir no terminal
 
 ## Pré-requisitos

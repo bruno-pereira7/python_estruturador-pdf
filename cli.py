@@ -1,7 +1,7 @@
 import argparse
 from .pdf_extrai import extract_data_from_pdf
 from .processa_dados import process_extracted_data
-
+ 
 def main():
     parser = argparse.ArgumentParser(description='Processador de PDF para estruturação de dados')
     
